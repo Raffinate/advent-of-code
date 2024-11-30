@@ -1,6 +1,7 @@
 package dev.aoc.starter.internal.aocapi;
 
 import java.io.FileWriter;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
@@ -24,7 +25,7 @@ public record PuzzleSaver() {
 
         System.out.println(puzzleDataPath);
 
-        try (var writer = new FileWriter(puzzleDataFile)) {
+        try (var writer = new FileWriter(puzzleDataFile, Charset.defaultCharset())) {
             writer.append(puzzleData);
         }
 
