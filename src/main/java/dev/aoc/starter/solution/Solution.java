@@ -2,9 +2,6 @@ package dev.aoc.starter.solution;
 
 import java.util.Optional;
 
-import org.apache.commons.lang3.tuple.Pair;
-import org.apache.commons.lang3.tuple.Triple;
-
 @FunctionalInterface
 public interface Solution {
 

@@ -1,10 +1,9 @@
 package dev.aoc.starter.internal.apprunner;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import dev.aoc.starter.internal.solutionrunner.SolutionContainer;
-import dev.aoc.starter.solution.Puzzle;
+import dev.aoc.starter.internal.solutionrunner.SolutionRunner;
 
 public record AppRunner(
         List<SolutionContainer> solutions) implements Runnable {
@@ -12,9 +11,9 @@ public record AppRunner(
     @Override
     public void run() {
 
-        System.out.println(
-                "Solutions: " + solutions.stream().map(SolutionContainer::puzzle).map(Puzzle::inputPath)
-                        .collect(Collectors.joining(",")));
+        var runner = new SolutionRunner(solutions().get(0));
+
+        runner.run();
 
     }
 

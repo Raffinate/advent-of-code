@@ -23,7 +23,7 @@ public record Puzzle(
                             "Class {1} must contain year, day and puzzle numbers.",
                             className));
 
-            digits.reversed();
+            digits = digits.reversed();
 
             var year = digits.get(2);
             if (year < 1000) {
@@ -32,7 +32,7 @@ public record Puzzle(
             var day = digits.get(1);
             var puzzle = digits.get(0);
 
-            var inputPath = String.format("%04d_%02d_%01d.txt", year, day, puzzle);
+            var inputPath = String.format("puzzle/%04d_%02d_%01d.txt", year, day, puzzle);
 
             return new Puzzle(
                     year,
