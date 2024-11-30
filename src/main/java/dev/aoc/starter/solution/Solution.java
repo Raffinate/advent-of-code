@@ -5,6 +5,13 @@ import java.util.Optional;
 @FunctionalInterface
 public interface Solution {
 
+    public static record Puzzle(
+            int year,
+            int day,
+            int puzzleNumber,
+            Optional<String> inputPath) {
+    }
+
     /**
      * Allows to override solution metadata that is extracted from name.
      * Format is ((year, day, puzzle), input_path).

@@ -2,6 +2,7 @@ package dev.aoc.starter.internal;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,8 +19,8 @@ public class AppConfiguration {
     }
 
     @Bean
-    public AppRunner appRunner(List<SolutionContainer> solutions) {
-        return new AppRunner(solutions);
+    public AppRunner appRunner(List<SolutionContainer> solutions, @Value("${dev.aoc.starter.token}") String token) {
+        return new AppRunner(solutions, token);
     }
 
 }

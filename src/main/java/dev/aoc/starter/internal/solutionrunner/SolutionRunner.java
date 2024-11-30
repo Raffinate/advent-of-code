@@ -10,9 +10,9 @@ public record SolutionRunner(SolutionContainer solution) implements Runnable {
     @Override
     @SneakyThrows
     public void run() {
-        var path = solution().puzzle().inputPath();
+        var path = solution().puzzleDetails().inputPath();
 
-        System.out.println("Running solution for Puzzle: " + solution().puzzle().toString());
+        System.out.println("Running solution for Puzzle: " + solution().puzzleDetails().toString());
 
         var inputStream = Optional.ofNullable(this.getClass().getClassLoader().getResourceAsStream(path));
 
