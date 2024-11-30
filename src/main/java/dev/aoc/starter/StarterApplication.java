@@ -1,24 +1,32 @@
 package dev.aoc.starter;
 
-import org.springframework.boot.SpringApplication;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+
+import org.springframework.boot.Banner.Mode;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+
+import dev.aoc.starter.internal.apprunner.AppRunner;
 
 @SpringBootApplication
-public class StarterApplication {
+public class StarterApplication implements CommandLineRunner {
 
-	static void log(Object x) {
-		System.out.println(x.toString());
-	}
-
-	static void foo() {
-		log(null);
-	}
+	@Autowired
+	AppRunner appRunner;
 
 	public static void main(String[] args) {
 
-		foo();
+		new SpringApplicationBuilder()
+				.bannerMode(Mode.OFF)
+				.logStartupInfo(false)
+				.sources(StarterApplication.class)
+				.run(args);
+	}
 
-		SpringApplication.run(StarterApplication.class, args);
+	@Override
+	public void run(String... args) throws Exception {
+		appRunner.run();
 	}
 
 }
