@@ -5,6 +5,7 @@ import dev.aoc.starter.internal.apprunner.AppRunner;
 import dev.aoc.starter.internal.apprunner.RootCommand;
 import dev.aoc.starter.internal.apprunner.SolveCommand;
 import dev.aoc.starter.internal.solutionrunner.SolutionContainer;
+import dev.aoc.starter.internal.solutionrunner.Solver;
 import dev.aoc.starter.solution.Solution;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,8 +35,13 @@ public class MainConfiguration {
     }
 
     @Bean
-    public SolveCommand solveCommandCommand(List<SolutionContainer> solutions) {
-        var command = new SolveCommand(0, 0, 0, solutions);
+    public Solver solver(List<SolutionContainer> solutions) {
+        return new Solver(solutions);
+    }
+
+    @Bean
+    public SolveCommand solveCommandCommand(Solver solver) {
+        var command = new SolveCommand(0, 0, 0, solver);
 
         return command;
     }

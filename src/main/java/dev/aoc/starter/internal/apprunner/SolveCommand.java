@@ -1,9 +1,9 @@
 /* (C) 2024 */
 package dev.aoc.starter.internal.apprunner;
 
-import dev.aoc.starter.internal.solutionrunner.SolutionContainer;
-import dev.aoc.starter.internal.solutionrunner.SolutionRunner;
-import java.util.List;
+import dev.aoc.starter.internal.solutionrunner.Solver;
+import dev.aoc.starter.solution.Solution.Puzzle;
+import java.util.Optional;
 import java.util.concurrent.Callable;
 import lombok.AllArgsConstructor;
 import picocli.CommandLine.Command;
@@ -22,24 +22,12 @@ public class SolveCommand implements Callable<Integer> {
     @Option(names = "-p", required = true)
     int puzzleNumber;
 
-    List<SolutionContainer> solutions;
+    Solver solver;
 
     @Override
     public Integer call() {
-        var solution =
-                solutions.stream()
-                        .filter(
-                                s -> {
-                                    return year == s.puzzleDetails().year()
-                                            && day == s.puzzleDetails().day()
-                                            && puzzleNumber == s.puzzleDetails().puzzleNumber();
-                                })
-                        .findFirst()
-                        .orElseThrow();
 
-        var runner = new SolutionRunner(solution);
-
-        runner.run();
+        solver.apply(new Puzzle(year, day, puzzleNumber, Optional.empty()));
 
         return 0;
     }

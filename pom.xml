@@ -53,11 +53,6 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>info.picocli</groupId>
 			<artifactId>picocli-spring-boot-starter</artifactId>
 			<version>4.7.6</version>
