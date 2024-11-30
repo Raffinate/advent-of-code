@@ -1,11 +1,11 @@
+/* (C) 2024 */
 package dev.aoc.starter.internal.solutionrunner;
 
+import com.google.common.collect.Lists;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Pattern;
-
-import com.google.common.collect.Lists;
 
 public final class StringExtractionUtils {
 
@@ -20,7 +20,6 @@ public final class StringExtractionUtils {
         public Integer next() {
             return s.nextInt();
         }
-
     }
 
     private static Pattern nonDigits = Pattern.compile("[^\\d]+");
@@ -30,5 +29,4 @@ public final class StringExtractionUtils {
         var scannerIntegerIterator = new ScannerIntegerIterator(scanner);
         return Lists.newArrayList(scannerIntegerIterator);
     }
-
 }

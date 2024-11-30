@@ -1,19 +1,15 @@
+/* (C) 2024 */
 package dev.aoc.starter.internal.solutionrunner;
 
+import dev.aoc.starter.solution.Solution;
 import java.util.Comparator;
 
-import dev.aoc.starter.solution.Solution;
-
-public record SolutionContainer(
-        Solution solution,
-        PuzzleDetails puzzleDetails) implements Comparable<SolutionContainer> {
+public record SolutionContainer(Solution solution, PuzzleDetails puzzleDetails)
+        implements Comparable<SolutionContainer> {
 
     public static SolutionContainer create(Solution solution) {
 
-        return new SolutionContainer(
-                solution,
-                PuzzleDetails.fromSolution(solution));
-
+        return new SolutionContainer(solution, PuzzleDetails.fromSolution(solution));
     }
 
     @Override

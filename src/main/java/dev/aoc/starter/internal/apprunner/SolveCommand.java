@@ -1,10 +1,10 @@
+/* (C) 2024 */
 package dev.aoc.starter.internal.apprunner;
-
-import java.util.List;
-import java.util.concurrent.Callable;
 
 import dev.aoc.starter.internal.solutionrunner.SolutionContainer;
 import dev.aoc.starter.internal.solutionrunner.SolutionRunner;
+import java.util.List;
+import java.util.concurrent.Callable;
 import lombok.AllArgsConstructor;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -26,10 +26,16 @@ public class SolveCommand implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        var solution = solutions.stream().filter(s -> {
-            return year == s.puzzleDetails().year() && day == s.puzzleDetails().day()
-                    && puzzleNumber == s.puzzleDetails().puzzleNumber();
-        }).findFirst().orElseThrow();
+        var solution =
+                solutions.stream()
+                        .filter(
+                                s -> {
+                                    return year == s.puzzleDetails().year()
+                                            && day == s.puzzleDetails().day()
+                                            && puzzleNumber == s.puzzleDetails().puzzleNumber();
+                                })
+                        .findFirst()
+                        .orElseThrow();
 
         var runner = new SolutionRunner(solution);
 
@@ -37,5 +43,4 @@ public class SolveCommand implements Callable<Integer> {
 
         return 0;
     }
-
 }

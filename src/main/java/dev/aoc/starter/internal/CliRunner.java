@@ -1,10 +1,10 @@
+/* (C) 2024 */
 package dev.aoc.starter.internal;
-
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.ExitCodeGenerator;
 
 import dev.aoc.starter.internal.apprunner.RootCommand;
 import lombok.AllArgsConstructor;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ExitCodeGenerator;
 import picocli.CommandLine;
 import picocli.CommandLine.IFactory;
 
@@ -24,5 +24,4 @@ public class CliRunner implements CommandLineRunner, ExitCodeGenerator {
     public void run(String... args) throws Exception {
         exitCode = new CommandLine(command, factory).execute(args);
     }
-
 }
