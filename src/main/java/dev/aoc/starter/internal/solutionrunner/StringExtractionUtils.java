@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 
 public final class StringExtractionUtils {
 
-    private record ScannerIntegerIterator(Scanner s) implements Iterator<Integer> {
-
+    private record ScannerIntegerIterator(Scanner s)
+        implements Iterator<Integer> {
         @Override
         public boolean hasNext() {
             return s.hasNextInt();

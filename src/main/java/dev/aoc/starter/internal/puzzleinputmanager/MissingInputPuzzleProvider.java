@@ -11,17 +11,21 @@ import java.util.Objects;
 import java.util.concurrent.Callable;
 
 public record MissingInputPuzzleProvider(
-        Collection<SolutionContainer> solutions, PuzzleInputReader reader, PuzzleLoader loader)
-        implements Callable<List<PuzzleDetails>> {
-
+    Collection<SolutionContainer> solutions,
+    PuzzleInputReader reader,
+    PuzzleLoader loader
+)
+    implements Callable<List<PuzzleDetails>> {
     @Override
     public List<PuzzleDetails> call() {
-        var puzzles = solutions.stream().map(SolutionContainer::puzzleDetails).toList();
+        var puzzles = solutions
+            .stream()
+            .map(SolutionContainer::puzzleDetails)
+            .toList();
         return puzzles.stream().filter(p -> !inputExists(p)).toList();
     }
 
     private boolean inputExists(PuzzleDetails puzzle) {
-
         var storedData = reader.apply(puzzle);
 
         if (storedData.isEmpty()) {

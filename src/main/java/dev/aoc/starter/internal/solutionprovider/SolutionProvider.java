@@ -9,10 +9,12 @@ import org.springframework.context.annotation.FilterType;
 
 @Configuration
 @ComponentScan(
-        basePackages = {"dev.aoc.starter.solution"},
-        includeFilters = {
-            @Filter(
-                    type = FilterType.ASSIGNABLE_TYPE,
-                    classes = {Solution.class})
-        })
+    basePackages = { "dev.aoc.starter.solution" },
+    includeFilters = {
+        @Filter(
+            type = FilterType.ASSIGNABLE_TYPE,
+            classes = { Solution.class }
+        ),
+    }
+)
 public class SolutionProvider {}

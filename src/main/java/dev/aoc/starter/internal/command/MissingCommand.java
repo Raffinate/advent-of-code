@@ -22,7 +22,9 @@ public class MissingCommand implements Callable<Integer> {
 
     MissingInputPuzzleProvider missingInputPuzzleProvider;
 
-    public MissingCommand(MissingInputPuzzleProvider missingInputPuzzleProvider) {
+    public MissingCommand(
+        MissingInputPuzzleProvider missingInputPuzzleProvider
+    ) {
         this.missingInputPuzzleProvider = missingInputPuzzleProvider;
     }
 
@@ -37,8 +39,14 @@ public class MissingCommand implements Callable<Integer> {
             if (printDownloadPath) {
                 System.out.println(p.inputPath());
             } else if (printDownloadCommandArgs) {
-                System.out.println(String.format(
-                        "download -y %s -d %s -p %s", p.yearString(), p.dayString(), p.puzzleNumberString()));
+                System.out.println(
+                    String.format(
+                        "download -y %s -d %s -p %s",
+                        p.yearString(),
+                        p.dayString(),
+                        p.puzzleNumberString()
+                    )
+                );
             } else {
                 System.out.println(p.toPuzzle().toString());
             }

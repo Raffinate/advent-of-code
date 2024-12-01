@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 
-@SpringBootTest(args = {"solve", "-y", "1001", "-d", "1", "-p", "1"})
+@SpringBootTest(args = { "solve", "-y", "1001", "-d", "1", "-p", "1" })
 @ExtendWith(OutputCaptureExtension.class)
 class StarterApplicationTests {
 
@@ -18,7 +18,8 @@ class StarterApplicationTests {
     CliRunner clr;
 
     @Test
-    public void thatCommandLineRunnerDoesStuff(CapturedOutput output) throws Exception {
+    public void thatCommandLineRunnerDoesStuff(CapturedOutput output)
+        throws Exception {
         assertEquals(0, clr.getExitCode());
         assertEquals(true, output.getOut().contains("Answer: hello from test"));
     }

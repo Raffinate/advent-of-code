@@ -22,8 +22,8 @@ uberjar: clean
 
 .PHONY: download
 download: uberjar
-	java -jar ./target/starter-0.0.1-SNAPSHOT.jar $$(java -jar ./target/starter-0.0.1-SNAPSHOT.jar missing -c) > src/main/resources/$$(java -jar ./target/starter-0.0.1-SNAPSHOT.jar missing -p)
+	java -jar ./target/solver-1.0.0.jar $$(java -jar ./target/solver-1.0.0.jar missing -c) > src/main/resources/$$(java -jar ./target/solver-1.0.0.jar missing -p)
 
 .PHONY: solve
 solve: uberjar
-	java -jar ./target/starter-0.0.1-SNAPSHOT.jar solve
+	java -jar ./target/solver-1.0.0.jar solve

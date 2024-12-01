@@ -32,8 +32,11 @@ public class DownloadCommand implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        var inputData =
-                puzzleLoader.load(PuzzleDetails.fromPuzzle(new Puzzle(year, day, puzzleNumber, Optional.empty())));
+        var inputData = puzzleLoader.load(
+            PuzzleDetails.fromPuzzle(
+                new Puzzle(year, day, puzzleNumber, Optional.empty())
+            )
+        );
 
         System.out.println(inputData);
 

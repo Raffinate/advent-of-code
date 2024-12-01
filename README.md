@@ -1,11 +1,13 @@
-
-
 # FAQs
 
 ## Start Working
-This is a 
+
+- Fork this repo
+- Set up VS Code (see VS Code section)
+- Start working on task
 
 ## To start working on next task
+
 1. Create a java class in dev.aoc.starter.solution
 1. Java class full name must contain year, day and puzzle number separated by non-digits.
 1. Example: dev.aoc.starter.solution.year2024.Day1Task1.java
@@ -14,21 +16,25 @@ This is a
 1. Implement solver
 
 ## How to download task input
+
 > $ make download
 
 It will download it to ./src/resources/puzzle/{YYYY}\_{dd}\_{id}.txt
 
 ## How to make and run jar
+
 > $ make uberjar
 
 > $ java -jar ./target/starter-0.0.1-SNAPSHOT.jar
 
 ## How to solve specific puzzle
+
 > ./mvnw spring-boot:run -Dspring-boot.run.arguments="solve -y 2024 -d 01 -p 1"
 
 > java -jar ./target/starter-0.0.1-SNAPSHOT.jar solve -y 2024 -d 01 -p 1
 
 ## How to solve last puzzle available
+
 > make solve
 
 > ./mvnw spring-boot:run -Dspring-boot.run.arguments="solve"
@@ -41,24 +47,27 @@ It will download it to ./src/resources/puzzle/{YYYY}\_{dd}\_{id}.txt
 1. Create a test class in src/test/java/dev/aoc/starter/solution/
 1. Example: src/test/java/dev/aoc/starter/solution/ExampleTest.java
 1. Use
+
 ```
     @SpringBootTest
     @ActiveProfiles("test")
     @ContextConfiguration(classes =     {TestConfiguration.class})
 ```
+
 1. Extend from src/test/java/dev/aoc/starter/solution/SolutionBaseTest.java
-1. use 
+1. use
+
 ```
      @Test
      void testSolutionScenario() {
         check(of(2024, 15, 2, "suffix"), "1982");
      }
 ```
-to test solution for puzzle 
+
+to test solution for puzzle
 Year = 2024, day=15, puzzle number 2.
 Input file src/test/resources/puzzle/1001_01_1_suffix.txt
 Expected result "1982"
-
 
 ## How to format
 
@@ -67,3 +76,36 @@ Expected result "1982"
 ## How to run tests
 
 > $ make test
+
+# VS Code
+
+> npm install -g prettier prettier-plugin-java
+
+> Install prettier extension
+
+> https://medium.com/@sabirsafder/how-to-configure-prettier-in-vs-code-a-step-by-step-guide-e360ef6a9a2a
+
+> In settings
+
+```
+{
+  "prettier.prettierPath": "/path/to/package/lib/node_modules/prettier",
+  "[java]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "editor.formatOnSave": true,
+  "prettier.requireConfig": false
+}
+```
+
+> Create .prettierc
+
+```
+{
+    "tabWidth": 4,
+    "useTabs": false,
+    "plugins": [
+        "/path/to/lib/node_modules/prettier-plugin-java/dist/index.js"
+    ]
+}
+```

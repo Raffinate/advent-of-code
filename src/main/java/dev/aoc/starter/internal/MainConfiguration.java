@@ -22,7 +22,9 @@ import picocli.CommandLine.IFactory;
 public class MainConfiguration {
 
     @Bean
-    public List<SolutionContainer> solutionContainersProvider(List<Solution> solutions) {
+    public List<SolutionContainer> solutionContainersProvider(
+        List<Solution> solutions
+    ) {
         return solutions.stream().map(SolutionContainer::create).toList();
     }
 
@@ -33,7 +35,10 @@ public class MainConfiguration {
     }
 
     @Bean
-    public Solver solver(List<SolutionContainer> solutions, PuzzleInputReader puzzleInputReader) {
+    public Solver solver(
+        List<SolutionContainer> solutions,
+        PuzzleInputReader puzzleInputReader
+    ) {
         return new Solver(solutions, puzzleInputReader);
     }
 
@@ -50,12 +55,16 @@ public class MainConfiguration {
     }
 
     @Bean
-    public MissingCommand missingCommand(MissingInputPuzzleProvider missingInputPuzzleProvider) {
+    public MissingCommand missingCommand(
+        MissingInputPuzzleProvider missingInputPuzzleProvider
+    ) {
         return new MissingCommand(missingInputPuzzleProvider);
     }
 
     @Bean
-    public PuzzleLoader puzzleLoader(@Value("${dev.aoc.starter.token}") String token) {
+    public PuzzleLoader puzzleLoader(
+        @Value("${dev.aoc.starter.token}") String token
+    ) {
         return new PuzzleLoader(token);
     }
 
@@ -66,7 +75,10 @@ public class MainConfiguration {
 
     @Bean
     public MissingInputPuzzleProvider missingInputPuzzleProvider(
-            Collection<SolutionContainer> solutions, PuzzleInputReader reader, PuzzleLoader loader) {
+        Collection<SolutionContainer> solutions,
+        PuzzleInputReader reader,
+        PuzzleLoader loader
+    ) {
         return new MissingInputPuzzleProvider(solutions, reader, loader);
     }
 

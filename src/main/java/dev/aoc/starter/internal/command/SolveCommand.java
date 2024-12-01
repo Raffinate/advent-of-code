@@ -42,28 +42,39 @@ public class SolveCommand implements Callable<Integer> {
             return 0;
         }
 
-        var puzzles = Lists.newArrayList(solver.solutions().stream()
+        var puzzles = Lists.newArrayList(
+            solver
+                .solutions()
+                .stream()
                 .map(SolutionContainer::puzzleDetails)
-                .toList());
+                .toList()
+        );
         Collections.sort(puzzles, Collections.reverseOrder());
 
         var puzzleFilter = PuzzleDetails.fromPuzzle(puzzle);
 
-        var filteredPuzzles = puzzles.stream()
-                .filter(p -> {
-                    return puzzleFilter.year() <= 2000 || p.year() == this.year;
-                })
-                .filter(p -> {
-                    return puzzleFilter.day() <= 0 || p.day() == this.day;
-                })
-                .filter(p -> {
-                    return puzzleFilter.puzzleNumber() <= 0 || p.puzzleNumber() == this.day;
-                })
-                .toList();
+        var filteredPuzzles = puzzles
+            .stream()
+            .filter(p -> {
+                return puzzleFilter.year() <= 2000 || p.year() == this.year;
+            })
+            .filter(p -> {
+                return puzzleFilter.day() <= 0 || p.day() == this.day;
+            })
+            .filter(p -> {
+                return (
+                    puzzleFilter.puzzleNumber() <= 0 ||
+                    p.puzzleNumber() == this.day
+                );
+            })
+            .toList();
 
         var latest = filteredPuzzles.stream().findFirst();
 
-        Preconditions.checkState(latest.isPresent(), "Could not find solution for: " + puzzleFilter.toString());
+        Preconditions.checkState(
+            latest.isPresent(),
+            "Could not find solution for: " + puzzleFilter.toString()
+        );
 
         solver.apply(latest.get().toPuzzle());
 

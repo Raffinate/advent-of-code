@@ -7,11 +7,16 @@ import java.util.Optional;
 import java.util.function.Function;
 import lombok.SneakyThrows;
 
-public class PuzzleInputReader implements Function<PuzzleDetails, Optional<String>> {
+public class PuzzleInputReader
+    implements Function<PuzzleDetails, Optional<String>> {
 
     @Override
     public Optional<String> apply(PuzzleDetails puzzle) {
-        var inputStream = Optional.ofNullable(this.getClass().getClassLoader().getResourceAsStream(puzzle.inputPath()));
+        var inputStream = Optional.ofNullable(
+            this.getClass()
+                .getClassLoader()
+                .getResourceAsStream(puzzle.inputPath())
+        );
 
         return inputStream.map(PuzzleInputReader::readAllBytes);
     }

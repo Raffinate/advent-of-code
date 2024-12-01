@@ -34,3 +34,5 @@ build/
 
 ### Access ###
 .env
+
+.prettierrc

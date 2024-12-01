@@ -11,11 +11,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@ComponentScan(basePackages = {"dev.aoc.starter.internal.solutionprovider", "dev.aoc.starter.internal.example"})
+@ComponentScan(
+    basePackages = {
+        "dev.aoc.starter.internal.solutionprovider",
+        "dev.aoc.starter.internal.example",
+    }
+)
 @Profile("test")
 public class TestConfiguration {
+
     @Bean
     public Solver solver(List<Solution> solutions) {
-        return new Solver(solutions.stream().map(SolutionContainer::create).toList(), new PuzzleInputReader());
+        return new Solver(
+            solutions.stream().map(SolutionContainer::create).toList(),
+            new PuzzleInputReader()
+        );
     }
 }

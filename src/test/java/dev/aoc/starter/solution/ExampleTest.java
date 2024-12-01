@@ -8,8 +8,9 @@ import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootTest
 @ActiveProfiles("test")
-@ContextConfiguration(classes = {TestConfiguration.class})
+@ContextConfiguration(classes = { TestConfiguration.class })
 public class ExampleTest extends SolutionBaseTest {
+
     @Test
     void test1001011() {
         check(of(1001, 1, 1, ""), "hello from test");

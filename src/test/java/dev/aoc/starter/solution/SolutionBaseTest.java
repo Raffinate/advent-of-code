@@ -22,18 +22,26 @@ class SolutionBaseTest {
     }
 
     public Puzzle of(int year, int day, int puzzle, String suffix) {
-
-        var details = PuzzleDetails.fromPuzzle(new Puzzle(year, day, puzzle, Optional.empty()));
+        var details = PuzzleDetails.fromPuzzle(
+            new Puzzle(year, day, puzzle, Optional.empty())
+        );
 
         if (suffix.isBlank()) {
-            return new Puzzle(details.year(), details.day(), details.puzzleNumber(), Optional.of(details.inputPath()));
+            return new Puzzle(
+                details.year(),
+                details.day(),
+                details.puzzleNumber(),
+                Optional.of(details.inputPath())
+            );
         }
 
         var defaultFile = details.inputPath();
         var testInput = defaultFile.replace(".txt", "_" + suffix + ".txt");
 
         Preconditions.checkState(
-                !testInput.equals(defaultFile), "Failed to add suffix " + suffix + " to file " + defaultFile);
+            !testInput.equals(defaultFile),
+            "Failed to add suffix " + suffix + " to file " + defaultFile
+        );
 
         return new Puzzle(year, day, puzzle, Optional.of(testInput));
     }
