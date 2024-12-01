@@ -2,9 +2,17 @@
 
 ## Start Working
 
-- Fork this repo
+- Fork / Mirror this repo
 - Set up VS Code (see VS Code section)
 - Start working on task
+
+## How to mirror repo
+
+Create empty github repo
+
+> git clone --bare git@github.com:Raffinate/advent-of-code.git
+
+> git push --mirror git@github.com:Raffinate/advent-of-code-solution.git
 
 ## To start working on next task
 
