@@ -1,4 +1,4 @@
-/* (C) 2024 */
+/* (C) 2024 Aleksey Mokhovikov */
 package dev.aoc.starter.internal.solutionprovider;
 
 import dev.aoc.starter.solution.Solution;

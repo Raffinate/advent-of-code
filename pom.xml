@@ -149,9 +149,9 @@
 							<include>src/test/java/**/*.java</include>
 						</includes>
 
-						<licenseHeader>
-							(C) $YEAR Aleksey Mokhovikov
-						</licenseHeader>
+						<!-- <licenseHeader>
+							<content>/* (C) $YEAR Aleksey Mokhovikov */</content>
+						</licenseHeader> -->
 
 						<!-- Cleanthat will refactor your code, but it may break your style: apply
 						it before your formatter -->

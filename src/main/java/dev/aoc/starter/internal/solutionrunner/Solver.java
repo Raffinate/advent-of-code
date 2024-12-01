@@ -1,4 +1,4 @@
-/* (C) 2024 */
+/* (C) 2024 Aleksey Mokhovikov */
 package dev.aoc.starter.internal.solutionrunner;
 
 import dev.aoc.starter.solution.Solution.Puzzle;

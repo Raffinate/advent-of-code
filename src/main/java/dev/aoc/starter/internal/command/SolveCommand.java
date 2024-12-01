@@ -1,4 +1,4 @@
-/* (C) 2024 */
+/* (C) 2024 Aleksey Mokhovikov */
 package dev.aoc.starter.internal.command;
 
 import com.google.common.base.Preconditions;

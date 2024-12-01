@@ -1,4 +1,4 @@
-/* (C) 2024 */
+/* (C) 2024 Aleksey Mokhovikov */
 package dev.aoc.starter.solution;
 
 import org.junit.jupiter.api.Test;

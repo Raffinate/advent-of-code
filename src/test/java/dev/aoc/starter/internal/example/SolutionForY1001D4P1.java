@@ -1,3 +1,4 @@
+/* (C) 2024 Aleksey Mokhovikov */
 package dev.aoc.starter.internal.example;
 
 import dev.aoc.starter.solution.Solution;
