@@ -37,6 +37,22 @@ git fetch -p origin
 git push --mirror
 ```
 
+NOTE
+
+```
+$ git push - this will delete any custom code you had in the mirrored repo.
+```
+
+You can disable 1 to 1 mirroring using
+
+```
+$ git config remote.origin.mirror false
+
+$ git fetch -p origin
+
+$ git push -u origin main
+```
+
 ## To start working on next task
 
 1. Create a java class in dev.aoc.starter.solution
@@ -48,9 +64,12 @@ git push --mirror
 
 ## How to download task input
 
+Find you cookie for AoC in your browser.
+Put you cookie in .env file under AOC_TOKEN="<YOU COOKIE>"
+
 > $ make download
 
-It will download it to ./src/resources/puzzle/{YYYY}\_{dd}\_{id}.txt
+It will download puzzle input to ./src/resources/puzzle/{YYYY}\_{dd}\_{id}.txt
 
 ## How to make and run jar
 
