@@ -129,33 +129,16 @@ Expected result "1982"
 
 # VS Code
 
-> npm install -g prettier prettier-plugin-java
+> npm install
 
 > Install prettier extension
 
-> https://medium.com/@sabirsafder/how-to-configure-prettier-in-vs-code-a-step-by-step-guide-e360ef6a9a2a
-
-> In settings
-
 ```
 {
-  "prettier.prettierPath": "/path/to/package/lib/node_modules/prettier",
   "[java]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
   },
   "editor.formatOnSave": true,
   "prettier.requireConfig": false
-}
-```
-
-> Create .prettierc
-
-```
-{
-    "tabWidth": 4,
-    "useTabs": false,
-    "plugins": [
-        "/path/to/lib/node_modules/prettier-plugin-java/dist/index.js"
-    ]
 }
 ```

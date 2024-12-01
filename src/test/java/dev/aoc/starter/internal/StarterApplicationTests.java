@@ -18,8 +18,7 @@ class StarterApplicationTests {
     CliRunner clr;
 
     @Test
-    public void thatCommandLineRunnerDoesStuff(CapturedOutput output)
-        throws Exception {
+    public void thatCommandLineRunnerDoesStuff(CapturedOutput output) {
         assertEquals(0, clr.getExitCode());
         assertEquals(true, output.getOut().contains("Answer: hello from test"));
     }
