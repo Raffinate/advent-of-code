@@ -8,12 +8,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class ApplicationMain {
 
     public static void main(String[] args) {
-        var context =
-                new SpringApplicationBuilder()
-                        .bannerMode(Mode.OFF)
-                        .logStartupInfo(false)
-                        .sources(MainConfiguration.class)
-                        .run(args);
+        var context = new SpringApplicationBuilder()
+                .bannerMode(Mode.OFF)
+                .logStartupInfo(false)
+                .sources(MainConfiguration.class)
+                .run(args);
 
         System.exit(SpringApplication.exit(context));
     }

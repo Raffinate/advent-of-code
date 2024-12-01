@@ -23,20 +23,17 @@ public record PuzzleLoader(String token) {
     public String load(PuzzleDetails puzzleDetails) {
 
         var uriString =
-                String.format(
-                        "https://adventofcode.com/%s/day/%s/input",
-                        puzzleDetails.year(), puzzleDetails.day());
-        var requestBuilder =
-                HttpRequest.newBuilder(URI.create(uriString)).GET().header(COOKIE_HEADER, token);
+                String.format("https://adventofcode.com/%s/day/%s/input", puzzleDetails.year(), puzzleDetails.day());
+        var requestBuilder = HttpRequest.newBuilder(URI.create(uriString)).GET().header(COOKIE_HEADER, token);
 
-        HEADERS.forEach(
-                (k, v) -> {
-                    requestBuilder.header(k, v);
-                });
+        HEADERS.forEach((k, v) -> {
+            requestBuilder.header(k, v);
+        });
 
         var request = requestBuilder.build();
 
-        var client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(1)).build();
+        var client =
+                HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(1)).build();
 
         var response = client.send(request, BodyHandlers.ofString());
 

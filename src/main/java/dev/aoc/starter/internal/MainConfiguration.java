@@ -22,15 +22,13 @@ public class MainConfiguration {
     }
 
     @Bean
-    public AppRunner appRunner(
-            List<SolutionContainer> solutions, @Value("${dev.aoc.starter.token}") String token) {
+    public AppRunner appRunner(List<SolutionContainer> solutions, @Value("${dev.aoc.starter.token}") String token) {
         return new AppRunner(solutions, token);
     }
 
     @Bean
     public RootCommand rootCommand() {
         var command = new RootCommand();
-
         return command;
     }
 

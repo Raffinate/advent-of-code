@@ -16,40 +16,29 @@ public record PuzzleDetails(int year, int day, int puzzleNumber, String inputPat
         var day = p.day();
         var puzzleNumber = p.puzzleNumber();
 
-        var inputPath =
-                p.inputPath()
-                        .orElseGet(
-                                () -> {
-                                    return String.format(
-                                            "puzzle/%04d_%02d_%01d.txt", year, day, puzzleNumber);
-                                });
+        var inputPath = p.inputPath().orElseGet(() -> {
+            return String.format("puzzle/%04d_%02d_%01d.txt", year, day, puzzleNumber);
+        });
 
         return new PuzzleDetails(year, day, puzzleNumber, inputPath);
     }
 
     public static PuzzleDetails fromSolution(Solution solution) {
 
-        var puzzle =
-                solution.puzzle()
-                        .orElseGet(
-                                () -> {
-                                    var className = solution.getClass().getCanonicalName();
-                                    var digits =
-                                            StringExtractionUtils.extractNonNegativeIntegers(
-                                                    className);
-                                    Preconditions.checkState(
-                                            digits.size() >= 3,
-                                            MessageFormat.format(
-                                                    "Class {1} must contain year, day and"
-                                                            + " puzzleNumber in canonical name.",
-                                                    className));
+        var puzzle = solution.puzzle().orElseGet(() -> {
+            var className = solution.getClass().getCanonicalName();
+            var digits = StringExtractionUtils.extractNonNegativeIntegers(className);
+            Preconditions.checkState(
+                    digits.size() >= 3,
+                    MessageFormat.format(
+                            "Class {1} must contain year, day and" + " puzzleNumber in canonical name.", className));
 
-                                    digits = digits.reversed();
-                                    var year = digits.get(2);
-                                    var day = digits.get(1);
-                                    var puzzleNumber = digits.get(0);
-                                    return new Puzzle(year, day, puzzleNumber, Optional.empty());
-                                });
+            digits = digits.reversed();
+            var year = digits.get(2);
+            var day = digits.get(1);
+            var puzzleNumber = digits.get(0);
+            return new Puzzle(year, day, puzzleNumber, Optional.empty());
+        });
 
         return PuzzleDetails.fromPuzzle(puzzle);
     }
@@ -68,10 +57,9 @@ public record PuzzleDetails(int year, int day, int puzzleNumber, String inputPat
 
     @Override
     public int compareTo(PuzzleDetails that) {
-        var comparator =
-                Comparator.comparingInt(PuzzleDetails::year)
-                        .thenComparingInt(PuzzleDetails::day)
-                        .thenComparingInt(PuzzleDetails::puzzleNumber);
+        var comparator = Comparator.comparingInt(PuzzleDetails::year)
+                .thenComparingInt(PuzzleDetails::day)
+                .thenComparingInt(PuzzleDetails::puzzleNumber);
 
         return comparator.compare(this, that);
     }

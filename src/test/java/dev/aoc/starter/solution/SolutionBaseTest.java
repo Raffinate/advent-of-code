@@ -12,7 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 class SolutionBaseTest {
 
-    @Autowired private Solver solver;
+    @Autowired
+    private Solver solver;
 
     public void check(Puzzle puzzle, String expected) {
         var result = solver.apply(puzzle);
@@ -25,19 +26,14 @@ class SolutionBaseTest {
         var details = PuzzleDetails.fromPuzzle(new Puzzle(year, day, puzzle, Optional.empty()));
 
         if (suffix.isBlank()) {
-            return new Puzzle(
-                    details.year(),
-                    details.day(),
-                    details.puzzleNumber(),
-                    Optional.of(details.inputPath()));
+            return new Puzzle(details.year(), details.day(), details.puzzleNumber(), Optional.of(details.inputPath()));
         }
 
         var defaultFile = details.inputPath();
         var testInput = defaultFile.replace(".txt", "_" + suffix + ".txt");
 
         Preconditions.checkState(
-                !testInput.equals(defaultFile),
-                "Failed to add suffix " + suffix + " to file " + defaultFile);
+                !testInput.equals(defaultFile), "Failed to add suffix " + suffix + " to file " + defaultFile);
 
         return new Puzzle(year, day, puzzle, Optional.of(testInput));
     }

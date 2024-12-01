@@ -172,12 +172,18 @@
 						want -->
 
 						<!-- apply a specific flavor of google-java-format and reflow long strings -->
-						<googleJavaFormat>
+						<!-- <googleJavaFormat>
 							<version>1.25.0</version>
 							<style>AOSP</style>
 							<reflowLongStrings>true</reflowLongStrings>
 							<formatJavadoc>false</formatJavadoc>
-						</googleJavaFormat>
+						</googleJavaFormat> -->
+						<palantirJavaFormat>
+							<version>2.39.0</version>                     <!-- optional -->
+							<style>PALANTIR</style>                       <!-- or AOSP/GOOGLE (optional) -->
+							<formatJavadoc>false</formatJavadoc>          <!-- defaults to false (optional,
+							requires at least Palantir 2.39.0) -->
+						</palantirJavaFormat>
 
 						<!-- make sure every file has the following copyright header.
         optionally, Spotless can set copyright years by digging

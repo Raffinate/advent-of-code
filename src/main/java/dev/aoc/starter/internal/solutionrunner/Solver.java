@@ -13,36 +13,25 @@ public record Solver(Collection<SolutionContainer> solutions) implements Functio
     @Override
     @SneakyThrows
     public String apply(Puzzle puzzle) {
-
-        var solution =
-                solutions().stream()
-                        .filter(
-                                s -> {
-                                    return s.puzzleDetails()
-                                                    .compareTo(PuzzleDetails.fromPuzzle(puzzle))
-                                            == 0;
-                                })
-                        .findAny()
-                        .orElseThrow(
-                                () -> {
-                                    return new RuntimeException(
-                                            String.format(
-                                                    "Could not find solution for: %s",
-                                                    puzzle.toString()));
-                                });
+        //
+        var solution = solutions().stream()
+                .filter(s -> {
+                    return s.puzzleDetails().compareTo(PuzzleDetails.fromPuzzle(puzzle)) == 0;
+                })
+                .findAny()
+                .orElseThrow(() -> {
+                    return new RuntimeException(String.format("Could not find solution for: %s", puzzle.toString()));
+                });
 
         var path = puzzle.inputPath().orElse(solution.puzzleDetails().inputPath());
 
-        var resolvedDetails =
-                new PuzzleDetails(puzzle.year(), puzzle.day(), puzzle.puzzleNumber(), path);
+        var resolvedDetails = new PuzzleDetails(puzzle.year(), puzzle.day(), puzzle.puzzleNumber(), path);
 
         System.out.println("Running solution for Puzzle: " + resolvedDetails);
 
-        var inputStream =
-                Optional.ofNullable(this.getClass().getClassLoader().getResourceAsStream(path));
+        var inputStream = Optional.ofNullable(this.getClass().getClassLoader().getResourceAsStream(path));
 
-        var inputText =
-                new String(inputStream.orElseThrow().readAllBytes(), StandardCharsets.UTF_8);
+        var inputText = new String(inputStream.orElseThrow().readAllBytes(), StandardCharsets.UTF_8);
 
         var outputText = solution.solution().solve(inputText).toString();
 

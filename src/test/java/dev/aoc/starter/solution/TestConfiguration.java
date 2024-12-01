@@ -10,11 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@ComponentScan(
-        basePackages = {
-            "dev.aoc.starter.internal.solutionprovider",
-            "dev.aoc.starter.internal.example"
-        })
+@ComponentScan(basePackages = {"dev.aoc.starter.internal.solutionprovider", "dev.aoc.starter.internal.example"})
 @Profile("test")
 public class TestConfiguration {
     @Bean

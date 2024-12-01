@@ -14,7 +14,8 @@ import org.springframework.boot.test.system.OutputCaptureExtension;
 @ExtendWith(OutputCaptureExtension.class)
 class StarterApplicationTests {
 
-    @Autowired CliRunner clr;
+    @Autowired
+    CliRunner clr;
 
     @Test
     public void thatCommandLineRunnerDoesStuff(CapturedOutput output) throws Exception {

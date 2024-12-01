@@ -8,7 +8,6 @@ public record SolutionContainer(Solution solution, PuzzleDetails puzzleDetails)
         implements Comparable<SolutionContainer> {
 
     public static SolutionContainer create(Solution solution) {
-
         return new SolutionContainer(solution, PuzzleDetails.fromSolution(solution));
     }
 
