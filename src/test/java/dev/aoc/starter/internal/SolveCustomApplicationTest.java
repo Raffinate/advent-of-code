@@ -10,16 +10,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 
-@SpringBootTest(args = { "solve", "-y", "1001", "-d", "1", "-p", "1" })
+@SpringBootTest(args = { "solve", "-y", "1", "-d", "3", "-p", "2" })
 @ExtendWith(OutputCaptureExtension.class)
-class StarterApplicationTests {
+class SolveCustomApplicationTest {
 
     @Autowired
     CliRunner clr;
 
     @Test
-    public void thatCommandLineRunnerDoesStuff(CapturedOutput output) {
+    public void thatCommandLineRunsTasks(CapturedOutput output) {
         assertEquals(0, clr.getExitCode());
-        assertEquals(true, output.getOut().contains("Answer: hello from test"));
+        assertEquals(true, output.getOut().contains("Answer: ish3Cah3"));
     }
 }

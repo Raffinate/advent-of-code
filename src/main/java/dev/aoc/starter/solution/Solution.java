@@ -3,8 +3,21 @@ package dev.aoc.starter.solution;
 
 import java.util.Optional;
 
+/**
+ * Interface all puzzle solutiuons should implement.
+ * All solutions should be located in
+ * dev.aoc.starter.solution module and
+ * implement Solution interface.
+ */
 @FunctionalInterface
 public interface Solution {
+    /**
+     * Puzzle definition
+     * @param year - Year of a puzzle.
+     * @param day - Day of a puzzle.
+     * @param puzzleNumber - Number of a puzzle (1 or 2)
+     * @param inputPath - Path to file that contains input.
+     */
     public static record Puzzle(
         int year,
         int day,
@@ -13,33 +26,36 @@ public interface Solution {
     ) {}
 
     /**
-     * Allows to override solution metadata that is extracted from name. Format is
-     * ((year, day,
-     * puzzle), input_path).
+     * Allows to override solution metadata that is extracted from name.
      *
-     * If empty, details are extractef from class name. Non-negative numbers are
-     * extracted from class
-     * name. It is expected that last 3 numbers will be year, day, puzzle. If year
-     * is less that 1000,
-     * 2000 will be added to year. If input path is empty or metadata is empty, path
-     * to input is
-     * constructed from year, day and puzzle.
+     * If empty, Year, Day and Puzzle Number are extracted from class name.
+     *
+     * Non-negative numbers are extracted from class name.
+     * It is expected that last 3 numbers will be year, day, puzzle accordingly.
+     * If the year is less that 1000, 2000 will be added to year.
+     *
+     * Class: some.package.2024.Day1Puzzle2.java
+     * Result: Year: 2024, Day: 1, Puzzle: 2, inputPath: "puzzle/2024_01_2.txt"
+     *
+     * Class: another.package1.subwith1234numbers.Y24D2P1
+     * Result: Year: 2024, Day: 2, Puzzle: 1, inputPath: "puzzle/2024_02_1.txt"
+     *
+     * If inputPath is empty, inputPath will be generated from year, day and puzzle number.
      *
      * For example:
+     * Puzzle: Year: 2024, Day: 4, Puzzle: 2,
+     * Result: inputPath: "puzzle/2024_04_2.txt"
      *
-     * Class: some.package.2024.Day1Puzzle2.java Result: ((2024, 1, 2),
-     * "puzzle/2024_01_2.txt")
-     *
-     * Class: another.package1.subwith1234numbers.Y24D2P1 Result: ((2024, 2, 1),
-     * "puzzle/2024_02_1.txt")
-     *
-     * @return Triple of ((year, day, puzzle), input path) or Empty. In latter case
-     *         details will be
-     *         extracted from class name.
+     * @return Puzzle or Empty that is this solution for.
      */
     default Optional<Puzzle> puzzle() {
         return Optional.empty();
     }
 
+    /**
+     * Method that transforms puzzle input to resut.
+     * @param input - input as given in Advent of Code.
+     * @return - output.
+     */
     Object solve(String input);
 }

@@ -28,7 +28,8 @@ public record PuzzleDetails(
             .inputPath()
             .orElseGet(() -> {
                 return String.format(
-                    "puzzle/%04d_%02d_%01d.txt",
+                    "%s/%04d_%02d_%01d.txt",
+                    (year < 1000 || year >= 2000) ? "puzzle" : "internal", //small hack for tests
                     year,
                     day,
                     puzzleNumber

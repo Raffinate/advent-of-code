@@ -37,10 +37,10 @@ public class SolveCommand implements Callable<Integer> {
     @Override
     public Integer call() {
         var puzzle = new Puzzle(year, day, puzzleNumber, Optional.empty());
-        if (year > 0 && day > 0 && puzzleNumber > 0) {
-            solver.apply(puzzle);
-            return 0;
-        }
+        // if (year > 0 && day > 0 && puzzleNumber > 0) {
+        //     solver.apply(PuzzleDetails.fromPuzzle(puzzle).toPuzzle());
+        //     return 0;
+        // }
 
         var puzzles = Lists.newArrayList(
             solver
@@ -56,15 +56,15 @@ public class SolveCommand implements Callable<Integer> {
         var filteredPuzzles = puzzles
             .stream()
             .filter(p -> {
-                return puzzleFilter.year() <= 2000 || p.year() == this.year;
+                return (this.year <= 0 || p.year() == puzzleFilter.year());
             })
             .filter(p -> {
-                return puzzleFilter.day() <= 0 || p.day() == this.day;
+                return this.day <= 0 || p.day() == puzzleFilter.day();
             })
             .filter(p -> {
                 return (
-                    puzzleFilter.puzzleNumber() <= 0 ||
-                    p.puzzleNumber() == this.day
+                    this.puzzleNumber <= 0 ||
+                    p.puzzleNumber() == puzzleFilter.puzzleNumber()
                 );
             })
             .toList();

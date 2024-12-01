@@ -1,57 +1,27 @@
 # FAQs
 
+## What is this project for?
+
+[Advent on Code](https://adventofcode.com/) - event for software engineers happens every year.
+
+This is a project to allow quickly start solving event puzzles in Java.
+
+### Step 1
+#### Fork / Clone this Repository
+
+### Step 2
+#### Create a branch for your solution 
+> git checkout -b solution
+
+### Step 3
+#### Create first puzzle solution java file
+> touch src/
+
 ## Start Working
 
-- Fork / Mirror this repo
+- Fork this repo
 - Set up VS Code (see VS Code section)
 - Start working on task
-
-## How to mirror repo
-
-See: [How to Mirror](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository#mirroring-a-repository-in-another-location)
-
-If you want to mirror a repository in another location, including getting updates from the original, you can clone a mirror and periodically push the changes.
-
-Open Terminal.
-
-Create a bare mirrored clone of the repository.
-
-```
-    git clone --mirror https://github.com/EXAMPLE-USER/REPOSITORY-TO-MIRROR.git
-```
-
-Set the push location to your mirror.
-
-```
-cd REPOSITORY-TO-MIRROR
-
-git remote set-url --push origin https://github.com/EXAMPLE-USER/MIRRORED
-```
-
-As with a bare clone, a mirrored clone includes all remote branches and tags, but all local references will be overwritten each time you fetch, so it will always be the same as the original repository. Setting the URL for pushes simplifies pushing to your mirror.
-
-To update your mirror, fetch updates and push.
-
-```
-git fetch -p origin
-git push --mirror
-```
-
-NOTE
-
-```
-$ git push - this will delete any custom code you had in the mirrored repo.
-```
-
-You can disable 1 to 1 mirroring using
-
-```
-$ git config remote.origin.mirror false
-
-$ git fetch -p origin
-
-$ git push -u origin main
-```
 
 ## To start working on next task
 
@@ -141,4 +111,51 @@ Expected result "1982"
   "editor.formatOnSave": true,
   "prettier.requireConfig": false
 }
+```
+
+## How to mirror repo (If Fork doesn't work)
+
+See: [How to Mirror](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository#mirroring-a-repository-in-another-location)
+
+If you want to mirror a repository in another location, including getting updates from the original, you can clone a mirror and periodically push the changes.
+
+Open Terminal.
+
+Create a bare mirrored clone of the repository.
+
+```
+    git clone --mirror https://github.com/EXAMPLE-USER/REPOSITORY-TO-MIRROR.git
+```
+
+Set the push location to your mirror.
+
+```
+cd REPOSITORY-TO-MIRROR
+
+git remote set-url --push origin https://github.com/EXAMPLE-USER/MIRRORED
+```
+
+As with a bare clone, a mirrored clone includes all remote branches and tags, but all local references will be overwritten each time you fetch, so it will always be the same as the original repository. Setting the URL for pushes simplifies pushing to your mirror.
+
+To update your mirror, fetch updates and push.
+
+```
+git fetch -p origin
+git push --mirror
+```
+
+NOTE
+
+```
+$ git push - this will delete any custom code you had in the mirrored repo.
+```
+
+You can disable 1 to 1 mirroring using
+
+```
+$ git config remote.origin.mirror false
+
+$ git fetch -p origin
+
+$ git push -u origin main
 ```
