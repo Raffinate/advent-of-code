@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.aoc</groupId>
-	<artifactId>starter</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>starter</name>
-	<description>Starter Advent Of Code Project</description>
+	<artifactId>solver</artifactId>
+	<version>1.0.0</version>
+	<name>solver</name>
+	<description>Starter project for solving Advent Of Code</description>
 	<url />
 	<licenses>
 		<license />
@@ -168,29 +168,15 @@
 					</formats>
 					<!-- define a language-specific format -->
 					<java>
-						<!-- no need to specify files, inferred automatically, but you can if you
-						want -->
-
-						<!-- apply a specific flavor of google-java-format and reflow long strings -->
-						<!-- <googleJavaFormat>
-							<version>1.25.0</version>
-							<style>AOSP</style>
-							<reflowLongStrings>true</reflowLongStrings>
-							<formatJavadoc>false</formatJavadoc>
-						</googleJavaFormat> -->
+						
 						<palantirJavaFormat>
-							<version>2.39.0</version>                     <!-- optional -->
-							<style>PALANTIR</style>                       <!-- or AOSP/GOOGLE (optional) -->
-							<formatJavadoc>false</formatJavadoc>          <!-- defaults to false (optional,
-							requires at least Palantir 2.39.0) -->
+							<version>2.39.0</version>
+							<style>PALANTIR</style>
+							<formatJavadoc>true</formatJavadoc>
 						</palantirJavaFormat>
 
-						<!-- make sure every file has the following copyright header.
-        optionally, Spotless can set copyright years by digging
-        through git history (see "license" section below) -->
 						<licenseHeader>
-							<content>/* (C) $YEAR */</content>  <!-- or
-							<file>${project.basedir}/license-header</file> -->
+							<content>/* $YEAR */</content>
 						</licenseHeader>
 					</java>
 				</configuration>

@@ -30,7 +30,9 @@ public record Solver(Collection<SolutionContainer> solutions, PuzzleInputReader 
 
         var reader = new PuzzleInputReader();
 
-        var inputText = reader.apply(resolvedDetails).orElseThrow();
+        var inputText = reader.apply(resolvedDetails)
+                .orElseThrow(
+                        () -> new IllegalStateException("Could not read input for: " + resolvedDetails.toString()));
 
         var outputText = solution.solution().solve(inputText).toString();
 
