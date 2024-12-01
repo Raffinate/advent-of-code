@@ -22,7 +22,11 @@ uberjar: clean
 
 .PHONY: download
 download: uberjar mk-puzzle-dir
-	java -jar ./target/solver-1.0.0.jar $$(java -jar ./target/solver-1.0.0.jar missing -c) > src/main/resources/$$(java -jar ./target/solver-1.0.0.jar missing -p)
+	java -jar ./target/solver-1.0.0.jar $$(java -jar ./target/solver-1.0.0.jar check -d) > src/main/resources/$$(java -jar ./target/solver-1.0.0.jar check -p)
+
+.PHONY: download
+redownload: uberjar mk-puzzle-dir
+	java -jar ./target/solver-1.0.0.jar $$(java -jar ./target/solver-1.0.0.jar check -d -c) > src/main/resources/$$(java -jar ./target/solver-1.0.0.jar check -c -p)
 
 .PHONY: mk-puzzle-dir
 	mkdir src/main/resources/puzzle

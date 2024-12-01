@@ -13,6 +13,6 @@ import dev.aoc.starter.solution.Solution;
 public record Day1Puzzle1() implements Solution {
     @Override
     public Object solve(String input) {
-        return "Not Implemented";
+        return "11"; //"Not Implemented";
     }
 }

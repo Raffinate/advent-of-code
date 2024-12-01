@@ -13,16 +13,39 @@ import java.util.concurrent.Callable;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
-@Command(name = "solve", mixinStandardHelpOptions = true)
+@Command(
+    name = "solve",
+    mixinStandardHelpOptions = true,
+    description = {
+        "Runs solver.",
+        "Picks latest puzzle that has solution implementation.",
+        "Reads corresponding input from resources.",
+        "If filters (-y, -d, -p) are specified,",
+        "picks latest solution that matched filter.",
+        "For example -p 1 will run solution for latest first puzzle.",
+    }
+)
 public class SolveCommand implements Callable<Integer> {
 
-    @Option(names = "-y", required = false)
+    @Option(
+        names = { "-y", "--year" },
+        required = false,
+        description = "Year puzzle is from."
+    )
     int year;
 
-    @Option(names = "-d", required = false)
+    @Option(
+        names = { "-d", "--day" },
+        required = false,
+        description = "Day puzzle is from."
+    )
     int day;
 
-    @Option(names = "-p", required = false)
+    @Option(
+        names = { "-p", "--puzzle" },
+        required = false,
+        description = "Puzzle number. 1 or 2."
+    )
     int puzzleNumber;
 
     Solver solver;

@@ -3,7 +3,7 @@ package dev.aoc.starter.internal;
 
 import dev.aoc.starter.internal.aocapi.PuzzleLoader;
 import dev.aoc.starter.internal.command.DownloadCommand;
-import dev.aoc.starter.internal.command.MissingCommand;
+import dev.aoc.starter.internal.command.CheckCommand;
 import dev.aoc.starter.internal.command.RootCommand;
 import dev.aoc.starter.internal.command.SolveCommand;
 import dev.aoc.starter.internal.puzzleinputmanager.MissingInputPuzzleProvider;
@@ -55,10 +55,10 @@ public class MainConfiguration {
     }
 
     @Bean
-    public MissingCommand missingCommand(
+    public CheckCommand missingCommand(
         MissingInputPuzzleProvider missingInputPuzzleProvider
     ) {
-        return new MissingCommand(missingInputPuzzleProvider);
+        return new CheckCommand(missingInputPuzzleProvider);
     }
 
     @Bean
