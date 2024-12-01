@@ -21,6 +21,10 @@ class SolutionBaseTest {
         assertEquals(expected, result);
     }
 
+    public Puzzle of(int year, int day, int puzzle) {
+        return of(year, day, puzzle, "");
+    }
+
     public Puzzle of(int year, int day, int puzzle, String suffix) {
         var details = PuzzleDetails.fromPuzzle(
             new Puzzle(year, day, puzzle, Optional.empty())
