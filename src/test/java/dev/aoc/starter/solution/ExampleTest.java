@@ -16,6 +16,6 @@ public class ExampleTest extends SolutionBaseTest {
 
     @Test
     void testTutorial() {
-        check(of(2024, 1, 1, "tutorial"), "0");
+        check(of(2024, 1, 1, "tutorial"), "11");
     }
 }

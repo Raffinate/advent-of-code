@@ -4,24 +4,62 @@
 
 [Advent on Code](https://adventofcode.com/) - event for software engineers happens every year.
 
-This is a project to allow quickly start solving event puzzles in Java.
+This project allows to start solving event puzzles quickly in Java.
 
 ### Step 1
+
 #### Fork / Clone this Repository
 
 ### Step 2
-#### Create a branch for your solution 
+
+#### Create a branch for your solution
+
 > git checkout -b solution
 
 ### Step 3
-#### Create first puzzle solution java file
-> touch src/
 
-## Start Working
+#### [Optional] Add you token to .env file
 
-- Fork this repo
-- Set up VS Code (see VS Code section)
-- Start working on task
+Create .env file in root directory and add following line:
+
+> AOC_TOKEN="<YOUR_COOKIE>"
+
+After that run
+
+> make download
+
+You have downloaded task input to: src/resources/puzzle/2024_01_1.txt
+
+#### Alternative
+
+Create src/resources/puzzle/2024_01_1.txt
+Copy and paste your first puzzle input in that file.
+
+### Step 4
+
+#### Run make test
+
+> make test
+
+```
+ExampleTest.testTutorial:19->check:1->SolutionBaseTest.check:33 expected: <11> but was: <Not Implemented>
+```
+
+### Step 5
+
+#### Implement solution
+
+First puzzle is in src/main/java/dev/aoc/starter/solution/year2024/Day1Puzzle1.java
+
+### Step 6
+
+#### Run your solution with actual input
+
+> make run
+
+and submit your solution
+
+## More Details
 
 ## To start working on next task
 
@@ -41,11 +79,15 @@ Put you cookie in .env file under AOC_TOKEN="<YOU COOKIE>"
 
 It will download puzzle input to ./src/resources/puzzle/{YYYY}\_{dd}\_{id}.txt
 
+## Can I download manually?
+
+Sure. Create a file ./src/resources/puzzle/{YYYY}\_{dd}\_{n}.txt and copy/paste your input there.
+
 ## How to make and run jar
 
 > $ make uberjar
 
-> $ java -jar ./target/starter-0.0.1-SNAPSHOT.jar
+> $ java -jar ./target/starter-0.0.1-SNAPSHOT.jar --help
 
 ## How to solve specific puzzle
 
@@ -75,7 +117,7 @@ It will download puzzle input to ./src/resources/puzzle/{YYYY}\_{dd}\_{id}.txt
 ```
 
 1. Extend from src/test/java/dev/aoc/starter/solution/SolutionBaseTest.java
-1. use
+1. use helper functions defined in base class to make tests as oneliner.
 
 ```
      @Test
@@ -84,10 +126,13 @@ It will download puzzle input to ./src/resources/puzzle/{YYYY}\_{dd}\_{id}.txt
      }
 ```
 
-to test solution for puzzle
-Year = 2024, day=15, puzzle number 2.
-Input file src/test/resources/puzzle/1001_01_1_suffix.txt
-Expected result "1982"
+This will test solution for puzzle:
+
+> Year = 2024, day=15, puzzle number 2.
+
+> Input file src/test/resources/puzzle/2024_15_2_suffix.txt
+
+> Expected result "1982"
 
 ## How to format
 
@@ -97,7 +142,11 @@ Expected result "1982"
 
 > $ make test
 
-# VS Code
+## How to disable all that formatting and tests
+
+Delete relevant plugin sections in pom.xml
+
+# IDE: VS Code
 
 > npm install
 
