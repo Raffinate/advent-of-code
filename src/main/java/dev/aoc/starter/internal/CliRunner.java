@@ -1,7 +1,7 @@
 /* (C) 2024 */
 package dev.aoc.starter.internal;
 
-import dev.aoc.starter.internal.apprunner.RootCommand;
+import dev.aoc.starter.internal.command.RootCommand;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;

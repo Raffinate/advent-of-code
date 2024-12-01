@@ -11,6 +11,10 @@ import java.util.Optional;
 public record PuzzleDetails(int year, int day, int puzzleNumber, String inputPath)
         implements Comparable<PuzzleDetails> {
 
+    public Puzzle toPuzzle() {
+        return new Puzzle(year, day, puzzleNumber, Optional.of(inputPath));
+    }
+
     public static PuzzleDetails fromPuzzle(Puzzle p) {
         var year = p.year() < 1000 ? 2000 + p.year() : p.year();
         var day = p.day();

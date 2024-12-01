@@ -2,13 +2,12 @@
 package dev.aoc.starter.internal.solutionrunner;
 
 import dev.aoc.starter.solution.Solution.Puzzle;
-import java.nio.charset.StandardCharsets;
 import java.util.Collection;
-import java.util.Optional;
 import java.util.function.Function;
 import lombok.SneakyThrows;
 
-public record Solver(Collection<SolutionContainer> solutions) implements Function<Puzzle, String> {
+public record Solver(Collection<SolutionContainer> solutions, PuzzleInputReader puzzleInputReader)
+        implements Function<Puzzle, String> {
 
     @Override
     @SneakyThrows
@@ -29,9 +28,9 @@ public record Solver(Collection<SolutionContainer> solutions) implements Functio
 
         System.out.println("Running solution for Puzzle: " + resolvedDetails);
 
-        var inputStream = Optional.ofNullable(this.getClass().getClassLoader().getResourceAsStream(path));
+        var reader = new PuzzleInputReader();
 
-        var inputText = new String(inputStream.orElseThrow().readAllBytes(), StandardCharsets.UTF_8);
+        var inputText = reader.apply(resolvedDetails).orElseThrow();
 
         var outputText = solution.solution().solve(inputText).toString();
 
