@@ -3,6 +3,7 @@ package dev.aoc.starter.internal.command;
 
 import com.google.common.collect.Lists;
 import dev.aoc.starter.internal.puzzleinputmanager.MissingInputPuzzleProvider;
+import dev.aoc.starter.internal.puzzleinputmanager.PuzzleInputManager;
 import java.util.Collections;
 import java.util.concurrent.Callable;
 import picocli.CommandLine.Command;
@@ -13,8 +14,8 @@ import picocli.CommandLine.Option;
     mixinStandardHelpOptions = true,
     description = {
         "Checks for puzzles with missing input files.",
-        "Use: 'make download' to automatically download input files.",
-        "Use: 'make redownload' to automatically download corrupted input files.",
+        "Use: 'make fix' to automatically download missing input files.",
+        "Use: 'make redownload' to re-download all input files.",
     }
 )
 public class CheckCommand implements Callable<Integer> {
@@ -22,35 +23,33 @@ public class CheckCommand implements Callable<Integer> {
     @Option(
         names = { "-a", "--all" },
         negatable = true,
-        description = "Show all puzzles with missing inputs."
+        description = "Prints all puzzles with missing inputs."
     )
     boolean all;
 
     @Option(
-        names = { "-p", "--print-path" },
+        names = { "-f", "--fix" },
         negatable = true,
-        description = "Print file path where input is expected."
+        description = "Download missing puzzle inputs. Requires TOKEN."
     )
-    boolean printDownloadPath;
-
-    @Option(
-        names = { "-d", "--print-download-args" },
-        negatable = true,
-        description = "Print args to supply to download command."
-    )
-    boolean printDownloadCommandArgs;
+    boolean fix;
 
     @Option(
         names = { "-c", "--content-check" },
         negatable = true,
-        description = "If TRUE verifies input content in addition to file existance. Requires TOKEN."
+        description = "If TRUE verifies input content in addition to file presense. Requires TOKEN."
     )
     boolean verifyContent;
 
     MissingInputPuzzleProvider missingInputPuzzleProvider;
+    PuzzleInputManager puzzleInputManager;
 
-    public CheckCommand(MissingInputPuzzleProvider missingInputPuzzleProvider) {
+    public CheckCommand(
+        MissingInputPuzzleProvider missingInputPuzzleProvider,
+        PuzzleInputManager puzzleInputManager
+    ) {
         this.missingInputPuzzleProvider = missingInputPuzzleProvider;
+        this.puzzleInputManager = puzzleInputManager;
     }
 
     @Override
@@ -63,16 +62,10 @@ public class CheckCommand implements Callable<Integer> {
         var filtered = all ? missing : missing.stream().limit(1).toList();
 
         filtered.forEach(p -> {
-            if (printDownloadPath) {
-                System.out.println(p.inputPath());
-            } else if (printDownloadCommandArgs) {
+            if (fix) {
+                puzzleInputManager.save(p);
                 System.out.println(
-                    String.format(
-                        "download -y %s -d %s -p %s",
-                        p.yearString(),
-                        p.dayString(),
-                        p.puzzleNumberString()
-                    )
+                    "Fixed input for " + p.toPuzzle().toString()
                 );
             } else {
                 System.out.println(p.toPuzzle().toString());

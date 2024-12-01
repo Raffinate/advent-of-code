@@ -20,13 +20,13 @@ clean:
 uberjar: clean
 	./mvnw install
 
-.PHONY: download
-download: uberjar mk-puzzle-dir
-	java -jar ./target/solver-1.0.0.jar $$(java -jar ./target/solver-1.0.0.jar check -d) > src/main/resources/$$(java -jar ./target/solver-1.0.0.jar check -p)
+.PHONY: fix
+fix: uberjar mk-puzzle-dir
+	java -jar ./target/solver-1.0.0.jar check -a -f
 
-.PHONY: download
+.PHONY: redownload
 redownload: uberjar mk-puzzle-dir
-	java -jar ./target/solver-1.0.0.jar $$(java -jar ./target/solver-1.0.0.jar check -d -c) > src/main/resources/$$(java -jar ./target/solver-1.0.0.jar check -c -p)
+	java -jar ./target/solver-1.0.0.jar check -a -c -f
 
 .PHONY: mk-puzzle-dir
 	mkdir src/main/resources/puzzle

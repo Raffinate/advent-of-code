@@ -2,6 +2,7 @@
 package dev.aoc.starter.internal.command;
 
 import dev.aoc.starter.internal.aocapi.PuzzleLoader;
+import dev.aoc.starter.internal.puzzleinputmanager.PuzzleInputManager;
 import dev.aoc.starter.internal.solutionrunner.PuzzleDetails;
 import dev.aoc.starter.solution.Solution.Puzzle;
 import java.util.Optional;
@@ -13,9 +14,9 @@ import picocli.CommandLine.Option;
     name = "download",
     mixinStandardHelpOptions = true,
     description = {
-        "Downloads input for given puzzle.",
-        "Use: 'make download' to automatically download input files.",
-        "Use: 'make redownload' to automatically download corrupted input files.",
+        "Downloads input for given puzzle. Requires TOKEN.",
+        "Use: 'make fix' to automatically download missing input files.",
+        "Use: 'make redownload' to re-download all input files.",
     }
 )
 public class DownloadCommand implements Callable<Integer> {
@@ -41,10 +42,23 @@ public class DownloadCommand implements Callable<Integer> {
     )
     int puzzleNumber;
 
+    @Option(
+        names = { "-o", "--stdout" },
+        required = false,
+        description = "Print to stdout instead of saving to file."
+    )
+    boolean out;
+
     PuzzleLoader puzzleLoader;
 
-    public DownloadCommand(PuzzleLoader puzzleLoader) {
+    PuzzleInputManager puzzleInputManager;
+
+    public DownloadCommand(
+        PuzzleLoader puzzleLoader,
+        PuzzleInputManager puzzleInputManager
+    ) {
         this.puzzleLoader = puzzleLoader;
+        this.puzzleInputManager = puzzleInputManager;
         this.year = 0;
         this.day = 0;
         this.puzzleNumber = 0;
@@ -52,11 +66,18 @@ public class DownloadCommand implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        var inputData = puzzleLoader.load(
-            PuzzleDetails.fromPuzzle(
-                new Puzzle(year, day, puzzleNumber, Optional.empty())
-            )
+        var puzzle = PuzzleDetails.fromPuzzle(
+            new Puzzle(year, day, puzzleNumber, Optional.empty())
         );
+        if (!out) {
+            puzzleInputManager.save(puzzle);
+            System.out.println(
+                "Saved input for " + puzzle.toPuzzle().toString()
+            );
+            return 0;
+        }
+
+        var inputData = puzzleLoader.load(puzzle);
 
         System.out.println(inputData);
 

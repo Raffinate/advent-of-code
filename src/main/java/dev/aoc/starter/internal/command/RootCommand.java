@@ -12,7 +12,7 @@ import picocli.CommandLine.Command;
         "CLI to quickly start solving AOC tasks without boilerplate setup.",
         "To run puzzle solution: 'make solve'",
         "To start solving new puzzle: Create Solution implementation class accoring to README.md",
-        "To download input for new puzzle: 'make download' or 'make redownload'",
+        "To download input for new puzzles: 'make fix' or 'make redownload'",
         "To run tests: 'make test'",
         "To add test: see src/test/java/dev/aoc/starter/solution/ExampleTest.java",
     }

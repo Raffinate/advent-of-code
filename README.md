@@ -32,6 +32,7 @@ You have downloaded task input to: src/resources/puzzle/2024_01_1.txt
 
 #### Alternative
 
+Create empty .env file.
 Create src/resources/puzzle/2024_01_1.txt
 Copy and paste your first puzzle input in that file.
 
@@ -81,7 +82,9 @@ It will download puzzle input to ./src/resources/puzzle/{YYYY}\_{dd}\_{id}.txt
 
 ## Can I download manually?
 
-Sure. Create a file ./src/resources/puzzle/{YYYY}\_{dd}\_{n}.txt and copy/paste your input there.
+Sure.
+Create empty .env file.
+Create a file ./src/resources/puzzle/{YYYY}\_{dd}\_{n}.txt and copy/paste your input there.
 
 ## How to make and run jar
 

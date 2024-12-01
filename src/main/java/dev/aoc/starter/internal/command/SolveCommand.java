@@ -30,14 +30,14 @@ public class SolveCommand implements Callable<Integer> {
     @Option(
         names = { "-y", "--year" },
         required = false,
-        description = "Year puzzle is from."
+        description = "Puzzle year."
     )
     int year;
 
     @Option(
         names = { "-d", "--day" },
         required = false,
-        description = "Day puzzle is from."
+        description = "Puzzle day."
     )
     int day;
 
@@ -60,10 +60,6 @@ public class SolveCommand implements Callable<Integer> {
     @Override
     public Integer call() {
         var puzzle = new Puzzle(year, day, puzzleNumber, Optional.empty());
-        // if (year > 0 && day > 0 && puzzleNumber > 0) {
-        //     solver.apply(PuzzleDetails.fromPuzzle(puzzle).toPuzzle());
-        //     return 0;
-        // }
 
         var puzzles = Lists.newArrayList(
             solver
@@ -99,8 +95,9 @@ public class SolveCommand implements Callable<Integer> {
             "Could not find solution for: " + puzzleFilter.toString()
         );
 
-        solver.apply(latest.get().toPuzzle());
+        var output = solver.apply(latest.get().toPuzzle());
 
+        System.out.println("Answer: " + output);
         return 0;
     }
 }

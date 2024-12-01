@@ -2,11 +2,12 @@
 package dev.aoc.starter.internal;
 
 import dev.aoc.starter.internal.aocapi.PuzzleLoader;
-import dev.aoc.starter.internal.command.DownloadCommand;
 import dev.aoc.starter.internal.command.CheckCommand;
+import dev.aoc.starter.internal.command.DownloadCommand;
 import dev.aoc.starter.internal.command.RootCommand;
 import dev.aoc.starter.internal.command.SolveCommand;
 import dev.aoc.starter.internal.puzzleinputmanager.MissingInputPuzzleProvider;
+import dev.aoc.starter.internal.puzzleinputmanager.PuzzleInputManager;
 import dev.aoc.starter.internal.solutionrunner.PuzzleInputReader;
 import dev.aoc.starter.internal.solutionrunner.SolutionContainer;
 import dev.aoc.starter.internal.solutionrunner.Solver;
@@ -50,15 +51,19 @@ public class MainConfiguration {
     }
 
     @Bean
-    public DownloadCommand downloadCommand(PuzzleLoader puzzleLoader) {
-        return new DownloadCommand(puzzleLoader);
+    public DownloadCommand downloadCommand(
+        PuzzleLoader puzzleLoader,
+        PuzzleInputManager puzzleInputManager
+    ) {
+        return new DownloadCommand(puzzleLoader, puzzleInputManager);
     }
 
     @Bean
     public CheckCommand missingCommand(
-        MissingInputPuzzleProvider missingInputPuzzleProvider
+        MissingInputPuzzleProvider missingInputPuzzleProvider,
+        PuzzleInputManager puzzleInputManager
     ) {
-        return new CheckCommand(missingInputPuzzleProvider);
+        return new CheckCommand(missingInputPuzzleProvider, puzzleInputManager);
     }
 
     @Bean
@@ -85,5 +90,10 @@ public class MainConfiguration {
     @Bean
     public CliRunner cliRunner(IFactory cliFactory, RootCommand command) {
         return new CliRunner(cliFactory, command, 0);
+    }
+
+    @Bean
+    public PuzzleInputManager puzzleInputManager(PuzzleLoader loader) {
+        return new PuzzleInputManager(loader);
     }
 }

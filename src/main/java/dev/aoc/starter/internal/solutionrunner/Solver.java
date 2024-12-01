@@ -14,7 +14,6 @@ public record Solver(
     @Override
     @SneakyThrows
     public String apply(Puzzle puzzle) {
-        //
         var solution = solutions()
             .stream()
             .filter(s -> {
@@ -59,8 +58,6 @@ public record Solver(
             );
 
         var outputText = solution.solution().solve(inputText).toString();
-
-        System.out.println("Answer: " + outputText);
 
         return outputText;
     }
