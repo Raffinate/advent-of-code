@@ -2,13 +2,45 @@
 
 ## What is this project for?
 
-[Advent on Code](https://adventofcode.com/) - event for software engineers happens every year.
+[Advent on Code](https://adventofcode.com/) - event for software engineers that happens every year.
 
-This project allows to start solving event puzzles quickly in Java.
+This event is a set of new puzzles every day in December.
+
+This project is designed to remove setup boilerplate
+and start coding in feature rich environment immediately.
+
+- Automatic task input downloads.
+- OneLiner unit tests.
+
+To start:
+
+Create solution file.
+
+```
+public record Day1Puzzle1() implements Solution {
+    @Override
+    public Object solve(String input) {
+        return "Implement Me";
+    }
+```
+
+Run
+
+> make fix
+
+Run
+
+> make solve
 
 ### Step 1
 
 #### Fork / Clone this Repository
+
+### Step 2
+
+#### Set up your environment.
+
+See: IDE: VS Code section
 
 ### Step 2
 
