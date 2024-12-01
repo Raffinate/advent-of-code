@@ -8,11 +8,34 @@
 
 ## How to mirror repo
 
-Create empty github repo
+See: [How to Mirror](https://docs.github.com/en/repositories/creating-and-managing-repositories/duplicating-a-repository#mirroring-a-repository-in-another-location)
 
-> git clone --bare git@github.com:Raffinate/advent-of-code.git
+If you want to mirror a repository in another location, including getting updates from the original, you can clone a mirror and periodically push the changes.
 
-> git push --mirror git@github.com:Raffinate/advent-of-code-solution.git
+Open Terminal.
+
+Create a bare mirrored clone of the repository.
+
+```
+    git clone --mirror https://github.com/EXAMPLE-USER/REPOSITORY-TO-MIRROR.git
+```
+
+Set the push location to your mirror.
+
+```
+cd REPOSITORY-TO-MIRROR
+
+git remote set-url --push origin https://github.com/EXAMPLE-USER/MIRRORED
+```
+
+As with a bare clone, a mirrored clone includes all remote branches and tags, but all local references will be overwritten each time you fetch, so it will always be the same as the original repository. Setting the URL for pushes simplifies pushing to your mirror.
+
+To update your mirror, fetch updates and push.
+
+```
+git fetch -p origin
+git push --mirror
+```
 
 ## To start working on next task
 
