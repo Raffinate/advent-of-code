@@ -138,6 +138,14 @@ Create a file ./src/resources/puzzle/{YYYY}\_{dd}\_{n}.txt and copy/paste your i
 
 > java -jar ./target/starter-0.0.1-SNAPSHOT.jar solve
 
+## How to submit last puzzle answer
+
+> make submit
+
+> ./mvnw spring-boot:run -Dspring-boot.run.arguments="solve -s"
+
+> java -jar ./target/starter-0.0.1-SNAPSHOT.jar solve -s
+
 ## How to create test for solver
 
 1. Create test inputs in src/test/resources/puzzle directory

@@ -21,16 +21,17 @@ uberjar: clean
 	./mvnw install
 
 .PHONY: fix
-fix: uberjar mk-puzzle-dir
+fix: uberjar
 	java -jar ./target/solver-1.0.0.jar check -a -f
 
 .PHONY: redownload
-redownload: uberjar mk-puzzle-dir
+redownload: uberjar
 	java -jar ./target/solver-1.0.0.jar check -a -c -f
-
-.PHONY: mk-puzzle-dir
-	mkdir src/main/resources/puzzle
 
 .PHONY: solve
 solve: uberjar
 	java -jar ./target/solver-1.0.0.jar solve
+
+.PHONY: submit
+submit: uberjar
+	java -jar ./target/solver-1.0.0.jar solve -s

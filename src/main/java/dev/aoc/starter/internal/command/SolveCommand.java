@@ -3,6 +3,7 @@ package dev.aoc.starter.internal.command;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
+import dev.aoc.starter.internal.aocapi.PuzzleAnswerSubmitter;
 import dev.aoc.starter.internal.solutionrunner.PuzzleDetails;
 import dev.aoc.starter.internal.solutionrunner.SolutionContainer;
 import dev.aoc.starter.internal.solutionrunner.Solver;
@@ -48,10 +49,21 @@ public class SolveCommand implements Callable<Integer> {
     )
     int puzzleNumber;
 
+    @Option(
+        names = { "-s", "--submit" },
+        required = false,
+        negatable = true,
+        description = "Submit puzzle output to AoC. Requires TOKEN."
+    )
+    boolean submit;
+
     Solver solver;
 
-    public SolveCommand(Solver solver) {
+    PuzzleAnswerSubmitter submitter;
+
+    public SolveCommand(Solver solver, PuzzleAnswerSubmitter submitter) {
         this.solver = solver;
+        this.submitter = submitter;
         this.year = 0;
         this.day = 0;
         this.puzzleNumber = 0;
@@ -98,6 +110,19 @@ public class SolveCommand implements Callable<Integer> {
         var output = solver.apply(latest.get().toPuzzle());
 
         System.out.println("Answer: " + output);
+
+        if (submit) {
+            System.out.println(
+                String.format(
+                    "Submitting %s for %s",
+                    output,
+                    latest.get().toPuzzle()
+                )
+            );
+
+            System.out.println(submitter.submit(latest.get(), output));
+        }
+
         return 0;
     }
 }

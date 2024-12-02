@@ -1,6 +1,7 @@
 /* (C) 2024 Aleksey Mokhovikov */
 package dev.aoc.starter.internal;
 
+import dev.aoc.starter.internal.aocapi.PuzzleAnswerSubmitter;
 import dev.aoc.starter.internal.aocapi.PuzzleLoader;
 import dev.aoc.starter.internal.command.CheckCommand;
 import dev.aoc.starter.internal.command.DownloadCommand;
@@ -44,8 +45,11 @@ public class MainConfiguration {
     }
 
     @Bean
-    public SolveCommand solveCommandCommand(Solver solver) {
-        var command = new SolveCommand(solver);
+    public SolveCommand solveCommandCommand(
+        Solver solver,
+        PuzzleAnswerSubmitter submitter
+    ) {
+        var command = new SolveCommand(solver, submitter);
 
         return command;
     }
@@ -71,6 +75,13 @@ public class MainConfiguration {
         @Value("${dev.aoc.starter.token}") String token
     ) {
         return new PuzzleLoader(token);
+    }
+
+    @Bean
+    public PuzzleAnswerSubmitter puzzleandAnswerSubmitter(
+        @Value("${dev.aoc.starter.token}") String token
+    ) {
+        return new PuzzleAnswerSubmitter(token);
     }
 
     @Bean

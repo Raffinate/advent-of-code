@@ -1,3 +1,4 @@
+/* (C) 2024 Aleksey Mokhovikov */
 package dev.aoc.starter.internal.puzzleinputmanager;
 
 import com.google.common.base.Preconditions;
