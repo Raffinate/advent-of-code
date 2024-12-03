@@ -181,4 +181,4 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 # AoC Puzzles
-src/main/resources
+src/main/resources/puzzle
