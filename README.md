@@ -26,7 +26,7 @@ public record Day1Puzzle1() implements Solution {
 
 Run
 
-> make fix
+> make download
 
 Run
 
@@ -88,7 +88,7 @@ First puzzle is in src/main/java/dev/aoc/starter/solution/year2024/Day1Puzzle1.j
 
 #### Run your solution with actual input
 
-> make run
+> make solve
 
 and submit your solution
 

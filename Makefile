@@ -20,8 +20,8 @@ clean:
 uberjar: clean
 	./mvnw install
 
-.PHONY: fix
-fix: uberjar
+.PHONY: download
+download: uberjar
 	java -jar ./target/solver-1.0.0.jar check -a -f
 
 .PHONY: redownload
