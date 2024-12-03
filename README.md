@@ -97,8 +97,8 @@ and submit your solution
 ## To start working on next task
 
 1. Create a java class in dev.aoc.starter.solution
-1. Java class full name must contain year, day and puzzle number separated by non-digits.
-1. Example: dev.aoc.starter.solution.year2024.Day1Task1.java
+1. Java class full name must contain year, day and level separated by non-digits.
+1. Example: dev.aoc.starter.solution.year2024.Day1Level1.java
 1. Example: dev.aoc.starter.solution.Y24D1T1.java
 1. Extend class from dev.aoc.starter.solution.Solution
 1. Implement solver
@@ -171,7 +171,7 @@ Create a file ./src/resources/puzzle/{YYYY}\_{dd}\_{n}.txt and copy/paste your i
 
 This will test solution for puzzle:
 
-> Year = 2024, day=15, puzzle number 2.
+> Year = 2024, day = 15, level = 2.
 
 > Input file src/test/resources/puzzle/2024_15_2_suffix.txt
 

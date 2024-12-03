@@ -15,20 +15,20 @@ public interface Solution {
      * Puzzle definition
      * @param year - Year of a puzzle.
      * @param day - Day of a puzzle.
-     * @param puzzleNumber - Number of a puzzle (1 or 2)
+     * @param level - Level of a puzzle (1 or 2)
      * @param inputPath - Path to file that contains input.
      */
     public static record Puzzle(
         int year,
         int day,
-        int puzzleNumber,
+        int level,
         Optional<String> inputPath
     ) {}
 
     /**
      * Allows to override solution metadata that is extracted from name.
      *
-     * If empty, Year, Day and Puzzle Number are extracted from class name.
+     * If empty, Year, Day and Level are extracted from class name.
      *
      * Non-negative numbers are extracted from class name.
      * It is expected that last 3 numbers will be year, day, puzzle accordingly.
@@ -37,13 +37,13 @@ public interface Solution {
      * Class: some.package.2024.Day1Puzzle2.java
      * Result: Year: 2024, Day: 1, Puzzle: 2, inputPath: "puzzle/2024_01_2.txt"
      *
-     * Class: another.package1.subwith1234numbers.Y24D2P1
+     * Class: another.package1.subwith1234numbers.Y24D2L1
      * Result: Year: 2024, Day: 2, Puzzle: 1, inputPath: "puzzle/2024_02_1.txt"
      *
-     * If inputPath is empty, inputPath will be generated from year, day and puzzle number.
+     * If inputPath is empty, inputPath will be generated from year, day and level.
      *
      * For example:
-     * Puzzle: Year: 2024, Day: 4, Puzzle: 2,
+     * Puzzle: Year: 2024, Day: 4, Level: 2,
      * Result: inputPath: "puzzle/2024_04_2.txt"
      *
      * @return Puzzle or Empty that is this solution for.

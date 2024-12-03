@@ -43,11 +43,11 @@ public class SolveCommand implements Callable<Integer> {
     int day;
 
     @Option(
-        names = { "-p", "--puzzle" },
+        names = { "-l", "--level" },
         required = false,
-        description = "Puzzle number. 1 or 2."
+        description = "Level number. 1 or 2."
     )
-    int puzzleNumber;
+    int level;
 
     @Option(
         names = { "-s", "--submit" },
@@ -66,12 +66,12 @@ public class SolveCommand implements Callable<Integer> {
         this.submitter = submitter;
         this.year = 0;
         this.day = 0;
-        this.puzzleNumber = 0;
+        this.level = 0;
     }
 
     @Override
     public Integer call() {
-        var puzzle = new Puzzle(year, day, puzzleNumber, Optional.empty());
+        var puzzle = new Puzzle(year, day, level, Optional.empty());
 
         var puzzles = Lists.newArrayList(
             solver
@@ -93,10 +93,7 @@ public class SolveCommand implements Callable<Integer> {
                 return this.day <= 0 || p.day() == puzzleFilter.day();
             })
             .filter(p -> {
-                return (
-                    this.puzzleNumber <= 0 ||
-                    p.puzzleNumber() == puzzleFilter.puzzleNumber()
-                );
+                return (this.level <= 0 || p.level() == puzzleFilter.level());
             })
             .toList();
 

@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
 
-@SpringBootTest(args = { "solve", "-y", "1", "-d", "3", "-p", "2" })
+@SpringBootTest(args = { "solve", "-y", "1", "-d", "3", "-l", "2" })
 @ExtendWith(OutputCaptureExtension.class)
 class SolveCustomApplicationTest {
 

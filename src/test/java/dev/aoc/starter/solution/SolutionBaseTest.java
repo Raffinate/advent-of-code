@@ -64,7 +64,7 @@ class SolutionBaseTest {
             return new Puzzle(
                 details.year(),
                 details.day(),
-                details.puzzleNumber(),
+                details.level(),
                 Optional.of(details.inputPath())
             );
         }

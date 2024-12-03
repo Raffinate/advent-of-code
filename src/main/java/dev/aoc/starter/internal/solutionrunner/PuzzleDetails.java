@@ -8,21 +8,16 @@ import java.text.MessageFormat;
 import java.util.Comparator;
 import java.util.Optional;
 
-public record PuzzleDetails(
-    int year,
-    int day,
-    int puzzleNumber,
-    String inputPath
-)
+public record PuzzleDetails(int year, int day, int level, String inputPath)
     implements Comparable<PuzzleDetails> {
     public Puzzle toPuzzle() {
-        return new Puzzle(year, day, puzzleNumber, Optional.of(inputPath));
+        return new Puzzle(year, day, level, Optional.of(inputPath));
     }
 
     public static PuzzleDetails fromPuzzle(Puzzle p) {
         var year = p.year() < 1000 ? 2000 + p.year() : p.year();
         var day = p.day();
-        var puzzleNumber = p.puzzleNumber();
+        var level = p.level();
 
         var inputPath = p
             .inputPath()
@@ -32,11 +27,11 @@ public record PuzzleDetails(
                     (year < 1000 || year >= 2000) ? "puzzle" : "internal", //small hack for tests
                     year,
                     day,
-                    puzzleNumber
+                    level
                 );
             });
 
-        return new PuzzleDetails(year, day, puzzleNumber, inputPath);
+        return new PuzzleDetails(year, day, level, inputPath);
     }
 
     public static PuzzleDetails fromSolution(Solution solution) {
@@ -51,7 +46,7 @@ public record PuzzleDetails(
                     digits.size() >= 3,
                     MessageFormat.format(
                         "Class {1} must contain year, day and" +
-                        " puzzleNumber in canonical name.",
+                        " level in canonical name.",
                         className
                     )
                 );
@@ -59,8 +54,8 @@ public record PuzzleDetails(
                 digits = digits.reversed();
                 var year = digits.get(2);
                 var day = digits.get(1);
-                var puzzleNumber = digits.get(0);
-                return new Puzzle(year, day, puzzleNumber, Optional.empty());
+                var level = digits.get(0);
+                return new Puzzle(year, day, level, Optional.empty());
             });
 
         return PuzzleDetails.fromPuzzle(puzzle);
@@ -74,15 +69,15 @@ public record PuzzleDetails(
         return String.format("%02d", day);
     }
 
-    public String puzzleNumberString() {
-        return String.format("%01d", puzzleNumber);
+    public String levelString() {
+        return String.format("%01d", level);
     }
 
     @Override
     public int compareTo(PuzzleDetails that) {
         var comparator = Comparator.comparingInt(PuzzleDetails::year)
             .thenComparingInt(PuzzleDetails::day)
-            .thenComparingInt(PuzzleDetails::puzzleNumber);
+            .thenComparingInt(PuzzleDetails::level);
 
         return comparator.compare(this, that);
     }

@@ -41,7 +41,7 @@ public record Solver(
         var resolvedDetails = new PuzzleDetails(
             puzzle.year(),
             puzzle.day(),
-            puzzle.puzzleNumber(),
+            puzzle.level(),
             path
         );
 

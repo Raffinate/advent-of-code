@@ -40,7 +40,7 @@ public record PuzzleAnswerSubmitter(String token) {
         );
         var form = Map.of(
             "level",
-            puzzleDetails.puzzleNumberString(),
+            puzzleDetails.levelString(),
             "answer",
             answer
         );

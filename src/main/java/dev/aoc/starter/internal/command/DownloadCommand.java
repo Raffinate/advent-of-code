@@ -36,11 +36,11 @@ public class DownloadCommand implements Callable<Integer> {
     int day;
 
     @Option(
-        names = { "-p", "--puzzle" },
+        names = { "-l", "--level" },
         required = true,
-        description = "Puzzle number: 1 or 2."
+        description = "Level number: 1 or 2."
     )
-    int puzzleNumber;
+    int level;
 
     @Option(
         names = { "-o", "--stdout" },
@@ -61,13 +61,13 @@ public class DownloadCommand implements Callable<Integer> {
         this.puzzleInputManager = puzzleInputManager;
         this.year = 0;
         this.day = 0;
-        this.puzzleNumber = 0;
+        this.level = 0;
     }
 
     @Override
     public Integer call() {
         var puzzle = PuzzleDetails.fromPuzzle(
-            new Puzzle(year, day, puzzleNumber, Optional.empty())
+            new Puzzle(year, day, level, Optional.empty())
         );
         if (!out) {
             puzzleInputManager.save(puzzle);
