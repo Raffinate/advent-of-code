@@ -20,12 +20,16 @@ clean:
 uberjar: clean
 	./mvnw install
 
+.PHONY: uberjar-no-tests
+uberjar-no-tests: clean
+	./mvnw install -DskipTests=true
+
 .PHONY: download
-download: uberjar
+download: uberjar-no-tests
 	java -jar ./target/solver-1.0.0.jar check -a -f
 
 .PHONY: redownload
-redownload: uberjar
+redownload: uberjar-no-tests
 	java -jar ./target/solver-1.0.0.jar check -a -c -f
 
 .PHONY: solve
